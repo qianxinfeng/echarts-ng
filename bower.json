@@ -1,12 +1,14 @@
 {
   "name": "echarts-ng",
-  "homepage": "https://github.com/bornkiller/echarts-ng",
+  "homepage": "https://github.com/qianxinfeng/echarts-ng",
+  "fork_homepage": "https://github.com/bornkiller/echarts-ng",
   "authors": [
-    "bornkiller <hjj491229492@hotmail.com>"
+    "bornkiller <hjj491229492@hotmail.com>",
+    "xinfeng_qian <xinfeng_qian@hansight.com>"
   ],
   "description": "Simple angularjs wrap for Baidu echarts.",
   "main": "dist/echarts-ng.js",
-  "version": "0.2.10",
+  "version": "0.3.14",
   "moduleType": [],
   "keywords": [
     "echarts",

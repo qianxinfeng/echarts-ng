@@ -16,6 +16,7 @@
     ctx.GLOBAL_OPTION = {
       theme: "macarons",
       driftPalette: true,
+      clearOption: true,
       title: {
         left: "center",
         top: "top",
@@ -168,6 +169,7 @@
        * @description - update the instance, switch between loading and draw
        */
       function updateEchartsInstance(identity, config) {
+        var globalOption=assistance.getEchartsGlobalOption();
         var instance = assistance.storage.get(identity)
           , decorativeConfig;
 
@@ -180,7 +182,7 @@
         $dimension.shouldAdjustEchartsDimension(config.dynamic, config.series) && $dimension.adjustEchartsDimension(instance.getDom(), config.series);
         decorativeConfig = $waterfall.adaptWaterfallSeries(config);
 
-        if (angular.isObject(decorativeConfig) && angular.isArray(decorativeConfig.series) && decorativeConfig.series.length) {
+        if (angular.isObject(decorativeConfig) && angular.isArray(decorativeConfig.series)) {
           instance.hideLoading();
           instance.resize();
           instance.setOption(decorativeConfig);

@@ -267,6 +267,9 @@
        * @description - whether should wrap the element dimension
        */
       function shouldAdaptDimension(element, dimension) {
+        if(!dimension){
+          return false;
+        }
         if (!angular.isString(dimension)) {
           console.warn("The Pass Pixel Ratio Not Assign, Please Make Sure Height Already Specified"); //eslint-disable-line no-console
           return false;
@@ -410,6 +413,7 @@
     ctx.GLOBAL_OPTION = {
       theme: "macarons",
       driftPalette: true,
+      clearOption: true,
       title: {
         left: "center",
         top: "top",
@@ -562,6 +566,7 @@
        * @description - update the instance, switch between loading and draw
        */
       function updateEchartsInstance(identity, config) {
+        var globalOption=assistance.getEchartsGlobalOption();
         var instance = assistance.storage.get(identity)
           , decorativeConfig;
 
@@ -574,9 +579,11 @@
         $dimension.shouldAdjustEchartsDimension(config.dynamic, config.series) && $dimension.adjustEchartsDimension(instance.getDom(), config.series);
         decorativeConfig = $waterfall.adaptWaterfallSeries(config);
 
-        if (angular.isObject(decorativeConfig) && angular.isArray(decorativeConfig.series) && decorativeConfig.series.length) {
+        if (angular.isObject(decorativeConfig) && angular.isArray(decorativeConfig.series)) {
           instance.hideLoading();
           instance.resize();
+          console.log(globalOption);
+          console.log(decorativeConfig);
           instance.setOption(decorativeConfig);
         } else {
           //instance.clear();

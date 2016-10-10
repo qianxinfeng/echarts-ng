@@ -45,6 +45,9 @@
        * @description - whether should wrap the element dimension
        */
       function shouldAdaptDimension(element, dimension) {
+        if(!dimension){
+          return false;
+        }
         if (!angular.isString(dimension)) {
           console.warn("The Pass Pixel Ratio Not Assign, Please Make Sure Height Already Specified"); //eslint-disable-line no-console
           return false;
