@@ -169,7 +169,7 @@
        * @description - update the instance, switch between loading and draw
        */
       function updateEchartsInstance(identity, config) {
-        var globalOption=assistance.getEchartsGlobalOption();
+        var globalOption=angular.copy(assistance.getEchartsGlobalOption());
         var instance = assistance.storage.get(identity)
           , decorativeConfig;
 
@@ -185,6 +185,9 @@
         if (angular.isObject(decorativeConfig) && angular.isArray(decorativeConfig.series)) {
           instance.hideLoading();
           instance.resize();
+          if(angular.isArray(decorativeConfig.title)){
+            delete globalOption.title;
+          }
           var _option=angular.merge({},globalOption,decorativeConfig);
           instance.setOption(_option,_option.notMerge);
         } else {
