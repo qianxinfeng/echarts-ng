@@ -16,7 +16,7 @@
     ctx.GLOBAL_OPTION = {
       theme: "macarons",
       driftPalette: true,
-      clearOption: true,
+      notMerge: true,
       title: {
         left: "center",
         top: "top",
@@ -185,7 +185,8 @@
         if (angular.isObject(decorativeConfig) && angular.isArray(decorativeConfig.series)) {
           instance.hideLoading();
           instance.resize();
-          instance.setOption(decorativeConfig);
+          var _option=angular.merge({},globalOption,decorativeConfig);
+          instance.setOption(_option,_option.notMerge);
         } else {
           //instance.clear();
           instance.showLoading("default", {maskColor: "rgba(255, 255, 255, 1)"});
