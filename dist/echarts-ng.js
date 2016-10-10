@@ -582,8 +582,6 @@
         if (angular.isObject(decorativeConfig) && angular.isArray(decorativeConfig.series)) {
           instance.hideLoading();
           instance.resize();
-          console.log(globalOption);
-          console.log(decorativeConfig);
           instance.setOption(decorativeConfig);
         } else {
           //instance.clear();
