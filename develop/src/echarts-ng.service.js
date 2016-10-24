@@ -17,6 +17,9 @@
       theme: "macarons",
       driftPalette: true,
       notMerge: true,
+      loading:{
+        maskColor: 'rgba(255, 255, 255, 1)'
+      },
       title: {
         left: "center",
         top: "top",
@@ -181,6 +184,7 @@
         $waterfall.adaptWaterfallTooltip(instance, config);
         $dimension.shouldAdjustEchartsDimension(config.dynamic, config.series) && $dimension.adjustEchartsDimension(instance.getDom(), config.series);
         decorativeConfig = $waterfall.adaptWaterfallSeries(config);
+        var _option=angular.merge({},globalOption,decorativeConfig);
 
         if (angular.isObject(decorativeConfig) && angular.isArray(decorativeConfig.series)) {
           instance.hideLoading();
@@ -188,11 +192,10 @@
           if(angular.isArray(decorativeConfig.title)){
             delete globalOption.title;
           }
-          var _option=angular.merge({},globalOption,decorativeConfig);
           instance.setOption(_option,_option.notMerge);
         } else {
           //instance.clear();
-          instance.showLoading("default", {maskColor: "rgba(255, 255, 255, 1)"});
+          instance.showLoading("default", _option.loading);
         }
       }
 
