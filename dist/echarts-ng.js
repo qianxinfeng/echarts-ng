@@ -581,18 +581,17 @@
         $waterfall.adaptWaterfallTooltip(instance, config);
         $dimension.shouldAdjustEchartsDimension(config.dynamic, config.series) && $dimension.adjustEchartsDimension(instance.getDom(), config.series);
         decorativeConfig = $waterfall.adaptWaterfallSeries(config);
-        var _option=angular.merge({},globalOption,decorativeConfig);
-
         if (angular.isObject(decorativeConfig) && angular.isArray(decorativeConfig.series)) {
           instance.hideLoading();
           instance.resize();
           if(angular.isArray(decorativeConfig.title)){
             delete globalOption.title;
           }
+          var _option=angular.merge({},globalOption,decorativeConfig);
           instance.setOption(_option,_option.notMerge);
         } else {
           //instance.clear();
-          instance.showLoading("default", _option.loading);
+          instance.showLoading("default", decorativeConfig.loading||globalOption.loading);
         }
       }
 
