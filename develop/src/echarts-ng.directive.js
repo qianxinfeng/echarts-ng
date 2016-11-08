@@ -30,8 +30,9 @@
       },
       bindToController: true,
       controller: ["$scope", "$element", function ($scope, $element) {
-        var vm = this;
+        $element.addClass("ec-chart");
 
+        var vm = this;
         var OPTION = $echarts.getEchartsGlobalOption()
           , identity = vm.echarts
           , element = $element[0];

@@ -16,7 +16,13 @@
     ctx.GLOBAL_OPTION = {
       theme: "macarons",
       driftPalette: true,
-      notMerge: true,
+      notMerge: true,//更新option方式,默认不合并
+      emptyMask:{ //空数据显示配置
+        text:"未查询到数据",
+        isEmpty:function (option) {
+          return !option.series||option.series.length==0||!option.series[0].data||option.series[0].data.length==0;
+        }
+      },
       loading:{
         maskColor: 'rgba(255, 255, 255, 1)'
       },
@@ -192,12 +198,27 @@
           }
           var _option=angular.merge({},globalOption,decorativeConfig);
           instance.setOption(_option,_option.notMerge);
+          handleEmptyMask(instance,_option);
         } else {
           //instance.clear();
           instance.showLoading("default", decorativeConfig.loading||globalOption.loading);
         }
       }
-
+      function handleEmptyMask(instance,option) {
+        var $chartDom = angular.element(instance._api.getDom());
+        var $emptyMask=instance._emptyMask;
+        //add empty mask
+        if(!$emptyMask||$emptyMask.length==0){
+          instance._emptyMask=$emptyMask=angular.element("<div style='display: none;position: relative;top: -50%;text-align: center;' class='empty-mask'>"+option.emptyMask.text+"</div>");
+          $chartDom.append($emptyMask);
+        }else{
+          $emptyMask.css("display","none");
+        }
+        if(option.emptyMask.isEmpty(option)){
+          //show empty mask
+          $emptyMask.css("display","block");
+        }
+      }
       /**
        * @ngdoc method
        * @methodOf echarts-ng.service:$echarts
