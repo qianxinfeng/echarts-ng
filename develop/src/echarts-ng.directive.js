@@ -64,13 +64,7 @@
         // 绘制实例对象
         $echarts.updateEchartsInstance(identity, vm.config);
 
-        $scope.$watchCollection("chart.config.title", function (current, prev) {
-          if (!angular.equals(current, prev)) {
-            $echarts.updateEchartsInstance(identity, vm.config);
-          }
-        });
-
-        $scope.$watchCollection("chart.config.series", function (current, prev) {
+        $scope.$watch("chart.config", function (current, prev) {
           if (!angular.equals(current, prev)) {
             $echarts.updateEchartsInstance(identity, vm.config);
           }
