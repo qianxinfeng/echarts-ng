@@ -8,7 +8,7 @@
   ],
   "description": "Simple angularjs wrap for Baidu echarts.",
   "main": "dist/echarts-ng.js",
-  "version": "0.3.18",
+  "version": "0.3.19",
   "moduleType": [],
   "keywords": [
     "echarts",

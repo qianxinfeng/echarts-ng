@@ -730,10 +730,8 @@
         $echarts.updateEchartsInstance(identity, vm.config);
 
         $scope.$watch("chart.config", function (current, prev) {
-          if (!angular.equals(current, prev)) {
             $echarts.updateEchartsInstance(identity, vm.config);
-          }
-        });
+        },true);
 
         $scope.$on("$destroy", function () {
           instance.clear();
